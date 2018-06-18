@@ -44,9 +44,8 @@ namespace Aspose.Pdf.Bootcamp.Tests
                 new SimplePdfFormField {Name = "DateOfBirth", Value = "1981-04-29"}
             };
             var cloudStorageName = pdfManipuation.PopulateTemplate(fileName, fields);
-            var readonlyFields = new List<string> {"FirstName", "Surname", "DateOfBirth"};
             // act
-            var actual = pdfManipuation.MarkFieldsAsReadOnly(cloudStorageName, readonlyFields);
+            var actual = pdfManipuation.MarkFieldsAsReadOnly(cloudStorageName, fields);
             // assert
             actual.Length.Should().Be(110038);
         }

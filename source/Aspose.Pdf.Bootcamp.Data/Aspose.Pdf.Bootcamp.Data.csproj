@@ -59,6 +59,7 @@
   <ItemGroup>
     <Compile Include="PdfManipuation.cs" />
     <Compile Include="PdfStorage.cs" />
+    <Compile Include="PdfService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -67,7 +68,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Aspose.Pdf.Bootcamp.Domain\Aspose.Pdf.Bootcamp.Domain.csproj">
-      <Project>{53AE7970-D22B-4920-84EA-47BC02F26581}</Project>
+      <Project>{53ae7970-d22b-4920-84ea-47bc02f26581}</Project>
       <Name>Aspose.Pdf.Bootcamp.Domain</Name>
     </ProjectReference>
   </ItemGroup>

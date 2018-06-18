@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using Aspose.Pdf.Bootcamp.Domain;
 using Aspose.Pdf.Cloud.Sdk.Api;
 using Aspose.Pdf.Cloud.Sdk.Model;
@@ -20,7 +21,7 @@ namespace Aspose.Pdf.Bootcamp.Data
             return clonedTemplateName;
         }
 
-        public byte[] MarkFieldsAsReadOnly(string cloudStorageName, List<string> readonlyFields)
+        public byte[] MarkFieldsAsReadOnly(string cloudStorageName, List<SimplePdfFormField> readonlyFields)
         {
             var tempCloudFile = CreateTempCloudFile(cloudStorageName);
             var tempOuptutFile = Path.GetTempFileName();
@@ -32,7 +33,7 @@ namespace Aspose.Pdf.Bootcamp.Data
                     var form = stamper.AcroFields;
                     foreach (var field in form.Fields)
                     {
-                        if (readonlyFields.Contains(field.Key))
+                        if (readonlyFields.Any(x=>x.Name == field.Key))
                         {
                             MakeFieldReadOnly(form, field);
                         }

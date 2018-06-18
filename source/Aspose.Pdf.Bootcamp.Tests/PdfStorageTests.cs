@@ -45,6 +45,20 @@ namespace Aspose.Pdf.Bootcamp.Tests
         }
 
         [Test]
+        public void UploadTemplate_WhenTemplateNotPresent_ShouldReturnErrors()
+        {
+            // arrange
+            var templateName = "BootCampForm-DOESNOTEXIST-v2.pdf";
+            var filePath = CreateFilePath(templateName);
+            var pdfStorage = new PdfStorage();
+            // act
+            var actual = pdfStorage.UploadTemplate(filePath, templateName);
+            // assert
+            var expected = new UploadResult { Successful = false,Errors = { "Cannot locate pdf template [BootCampForm-DOESNOTEXIST-v2.pdf]" } };
+            actual.Should().BeEquivalentTo(expected);
+        }
+
+        [Test]
         public void Download_WhenFileExist_ShouldBeAbleToDownloadFile()
         {
             // arrange

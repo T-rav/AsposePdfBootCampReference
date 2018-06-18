@@ -33,6 +33,14 @@ namespace Aspose.Pdf.Bootcamp.Data
             var storageApi = CreateStorageApi();
 
             var fileBytes = FetchFileBytes(localFilePath);
+            if (fileBytes.Length == 0)
+            {
+                return new UploadResult
+                {
+                    Successful = false,
+                    Errors = {$"Cannot locate pdf template [{storageFileName}]"}
+                };
+            }
             using (var stream = new MemoryStream(fileBytes))
             {
                 var response = UploadPdfTemplate(localFilePath, stream, storageApi);
@@ -77,8 +85,18 @@ namespace Aspose.Pdf.Bootcamp.Data
 
         private byte[] FetchFileBytes(string localFilePath)
         {
+            if (TemplateNotFound(localFilePath))
+            {
+                return new byte[0];
+            }
+
             var fileBytes = File.ReadAllBytes(localFilePath);
             return fileBytes;
+        }
+
+        private static bool TemplateNotFound(string localFilePath)
+        {
+            return !File.Exists(localFilePath);
         }
 
         private UploadResult IsOkResponse(UploadResponse response)
