@@ -33,7 +33,8 @@ namespace Aspose.Pdf.Bootcamp.Tests
                                 .WithFormData(formFields)
                                 .Populate();
             // assert
-            actual.Length.Should().Be(110052);
+            var expectedLength = 110052;
+            actual.Length.Should().Be(expectedLength);
             //File.WriteAllBytes("C:\\Systems\\build.pdf", actual); // here for demo
         }
 
@@ -55,8 +56,8 @@ namespace Aspose.Pdf.Bootcamp.Tests
                 .WithFormData(formFields)
                 .Populate();
             // assert
-            actual.Length.Should().Be(0);
-            //File.WriteAllBytes("C:\\Systems\\build.pdf", actual); // here for demo
+            var expectedLength = 0;
+            actual.Length.Should().Be(expectedLength);
         }
 
         private string CreateFilePath(string templateName)
