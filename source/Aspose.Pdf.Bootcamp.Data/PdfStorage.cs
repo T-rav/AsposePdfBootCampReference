@@ -43,7 +43,7 @@ namespace Aspose.Pdf.Bootcamp.Data
             }
             using (var stream = new MemoryStream(fileBytes))
             {
-                var response = UploadPdfTemplate(localFilePath, stream, storageApi);
+                var response = UploadPdfTemplate(storageFileName, stream, storageApi);
                 return IsOkResponse(response);
             }
         }
@@ -76,9 +76,9 @@ namespace Aspose.Pdf.Bootcamp.Data
             return storageApi;
         }
         
-        private UploadResponse UploadPdfTemplate(string localFilePath, MemoryStream stream, StorageApi storageApi)
+        private UploadResponse UploadPdfTemplate(string storageFileName, MemoryStream stream, StorageApi storageApi)
         {
-            var createFileRequest = new PutCreateRequest(localFilePath, stream);
+            var createFileRequest = new PutCreateRequest(storageFileName, stream);
             var response = storageApi.PutCreate(createFileRequest);
             return response;
         }

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Configuration;
 using System.IO;
 using System.Linq;
 using Aspose.Pdf.Bootcamp.Domain;
@@ -10,9 +11,18 @@ namespace Aspose.Pdf.Bootcamp.Data
 {
     public class PdfManipuation : IPdfManipuation
     {
+        private readonly string _apiKey;
+        private readonly string _appSid;
+
+        public PdfManipuation()
+        {
+            _apiKey = ConfigurationManager.AppSettings["ApiKey"];
+            _appSid = ConfigurationManager.AppSettings["AppSid"];
+        }
+
         public string PopulateTemplate(string templateName, List<SimplePdfFormField> fields)
         {
-            var pdfApi = new PdfApi("0eefa8549ed6daf470bb15a3bec89a7e", "913d72c6-04a4-4adf-a175-1a944fe5a0c0");
+            var pdfApi = new PdfApi(_apiKey, _appSid);
             var storageApi = new PdfStorage();
             var clonedTemplateName = storageApi.CloneTemplate(templateName);
             var asposeFields = ConvertToAsposeFields(fields);

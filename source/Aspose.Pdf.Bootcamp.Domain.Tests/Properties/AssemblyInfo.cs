@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Aspose.Pdf.Bootcamp")]
+[assembly: AssemblyTitle("Aspose.Pdf.Bootcamp.Domain.Tests")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Aspose.PdfService.Bootcamp")]
+[assembly: AssemblyProduct("Aspose.Pdf.Bootcamp.Domain.Tests")]
 [assembly: AssemblyCopyright("Copyright ©  2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,16 +20,16 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("658221ec-92e9-4395-9b07-097d19bfb83c")]
+[assembly: Guid("1a72db1c-a273-4931-a430-e6bdc63006b2")]
 
 // Version information for an assembly consists of the following four values:
 //
 //      Major Version
 //      Minor Version
-//      Populate Number
+//      Build Number
 //      Revision
 //
-// You can specify all the values or you can default the Populate and Revision Numbers
+// You can specify all the values or you can default the Build and Revision Numbers
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("1.0.0.0")]

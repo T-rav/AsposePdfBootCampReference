@@ -16,22 +16,22 @@ namespace Aspose.Pdf.Bootcamp.Data
             _pdfManipulation = pdfManipuation;
         }
 
-        public IPdfWithFormData WithTemplate(string templateName, string localPath)
+        public IPdfServiceWithFormData WithTemplate(string templateName, string localPath)
         {
-            var builder = new PdfWithBuilder();
+            var builder = new PdfServiceBuilder();
             builder.WithTemplate(templateName, localPath);
 
             return builder;
         }
 
-        private class PdfWithBuilder : IPdfService, IPdfWithFormData, IPdfServicePopulate
+        private class PdfServiceBuilder : IPdfService, IPdfServiceWithFormData, IPdfServicePopulate
         {
             private string _templateName;
             private List<SimplePdfFormField> _formFields;
             private string _localPath;
 
 
-            public IPdfWithFormData WithTemplate(string templateName, string localPath)
+            public IPdfServiceWithFormData WithTemplate(string templateName, string localPath)
             {
                 _templateName = templateName;
                 _localPath = localPath;

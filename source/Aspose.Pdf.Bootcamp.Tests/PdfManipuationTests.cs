@@ -10,51 +10,55 @@ namespace Aspose.Pdf.Bootcamp.Tests
     [TestFixture]
     public class PdfManipuationTests
     {
-        [Test]
-        public void PopulateTemplate_WhenValidFormInformation_ShouldReturnNewFileName()
+        [TestFixture]
+        public class PopulateTemplate
         {
-            // arrange
-            var fileName = "BootCampForm-v2.pdf";
-            var pdfManipuation = new PdfManipuation();
-            StageTemplate(fileName);
-            var fields = new List<SimplePdfFormField>
+            [Test]
+            public void WhenValidFormInformation_ShouldReturnNewFileNameOfPopulatedPdf()
             {
-                new SimplePdfFormField {Name = "FirstName", Value = "Bob"},
-                new SimplePdfFormField {Name = "Surname", Value = "Smith"},
-                new SimplePdfFormField {Name = "DateOfBirth", Value = "1981-04-29"}
-            };
-            // act
-            var actual = pdfManipuation.PopulateTemplate(fileName, fields);
-            // assert
-            var expected = $"-{fileName}";
-            actual.Should().Contain(expected);
+                // arrange
+                var pdfUtils = new PdfTestUtils();
+                var fileName = "BootCampForm-v2.pdf";
+                pdfUtils.UploadTemplateToCloud(fileName);
+                var pdfManipuation = new PdfManipuation();
+                var fields = new List<SimplePdfFormField>
+                {
+                    new SimplePdfFormField {Name = "FirstName", Value = "Bob"},
+                    new SimplePdfFormField {Name = "Surname", Value = "Smith"},
+                    new SimplePdfFormField {Name = "DateOfBirth", Value = "1981-04-29"}
+                };
+                // act
+                var actual = pdfManipuation.PopulateTemplate(fileName, fields);
+                // assert
+                var expected = $"-{fileName}";
+                actual.Should().Contain(expected);
+            }
         }
 
-        [Test]
-        public void MarkFieldsAsReadOnly_WhenValidFormInformation_ShouldReturnNewFileName()
+        [TestFixture]
+        public class MarkFieldsAsReadOnly
         {
-            // arrange
-            var fileName = "BootCampForm-v2.pdf";
-            var pdfManipuation = new PdfManipuation();
-            StageTemplate(fileName);
-            var fields = new List<SimplePdfFormField>
+            [Test]
+            public void WhenValidFormInformation_ShouldReturnNewFileNameOfPopulatedPdf()
             {
-                new SimplePdfFormField {Name = "FirstName", Value = "Bob"},
-                new SimplePdfFormField {Name = "Surname", Value = "Smith"},
-                new SimplePdfFormField {Name = "DateOfBirth", Value = "1981-04-29"}
-            };
-            var cloudStorageName = pdfManipuation.PopulateTemplate(fileName, fields);
-            // act
-            var actual = pdfManipuation.MarkFieldsAsReadOnly(cloudStorageName, fields);
-            // assert
-            actual.Length.Should().Be(110038);
-        }
-
-        private void StageTemplate(string fileName)
-        {
-            var filePath = Path.Combine(TestContext.CurrentContext.TestDirectory,"Forms",fileName);
-            var pdfStorage = new PdfStorage();
-            pdfStorage.UploadTemplate(filePath, fileName);
-        }
+                // arrange
+                var pdfUtils = new PdfTestUtils();
+                var fileName = "BootCampForm-v2.pdf";
+                pdfUtils.UploadTemplateToCloud(fileName);
+                var pdfManipuation = new PdfManipuation();
+                var fields = new List<SimplePdfFormField>
+                {
+                    new SimplePdfFormField {Name = "FirstName", Value = "Bob"},
+                    new SimplePdfFormField {Name = "Surname", Value = "Smith"},
+                    new SimplePdfFormField {Name = "DateOfBirth", Value = "1981-04-29"}
+                };
+                var cloudStorageName = pdfManipuation.PopulateTemplate(fileName, fields);
+                // act
+                var actual = pdfManipuation.MarkFieldsAsReadOnly(cloudStorageName, fields);
+                // assert
+                var expected = 108590;
+                actual.Length.Should().Be(expected);
+            }
+        } 
     }
 }

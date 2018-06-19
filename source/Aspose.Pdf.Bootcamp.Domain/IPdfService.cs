@@ -4,10 +4,10 @@ namespace Aspose.Pdf.Bootcamp.Domain
 {
     public interface IPdfService
     {
-        IPdfWithFormData WithTemplate(string templateName, string localPath);
+        IPdfServiceWithFormData WithTemplate(string templateName, string localPath);
     }
 
-    public interface IPdfWithFormData
+    public interface IPdfServiceWithFormData
     {
         IPdfServicePopulate WithFormData(List<SimplePdfFormField> formFields);
 
