@@ -1,16 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Aspose.Pdf.Bootcamp.Data;
+﻿using System.Collections.Generic;
 using Aspose.Pdf.Bootcamp.Domain;
 using FluentAssertions;
 using NUnit.Framework;
-using NUnit.Framework.Internal;
 
-namespace Aspose.Pdf.Bootcamp.Tests
+namespace Aspose.Pdf.Bootcamp.Data.Tests
 {
     [TestFixture]
     public class PdfGatewayTests

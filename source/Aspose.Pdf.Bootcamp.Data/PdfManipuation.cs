@@ -33,7 +33,7 @@ namespace Aspose.Pdf.Bootcamp.Data
 
         public byte[] MarkFieldsAsReadOnly(string cloudStorageName, List<SimplePdfFormField> readonlyFields)
         {
-            var tempCloudFile = CreateTempCloudFile(cloudStorageName);
+            var tempCloudFile = CreateTempCloudFileLocally(cloudStorageName);
             var tempOuptutFile = Path.GetTempFileName();
 
             using (var reader = new PdfReader(tempCloudFile))
@@ -86,7 +86,7 @@ namespace Aspose.Pdf.Bootcamp.Data
             File.Delete(tempOuptutFile);
         }
 
-        private string CreateTempCloudFile(string cloudStorageName)
+        private string CreateTempCloudFileLocally(string cloudStorageName)
         {
             var storageApi = new PdfStorage();
             var cloudBytes = storageApi.Download(cloudStorageName);

@@ -1,15 +1,8 @@
-﻿using System.Configuration;
-using System.IO;
-using Aspose.Pdf.Bootcamp.Data;
-using Aspose.Pdf.Bootcamp.Domain;
-using Aspose.Storage.Cloud.Sdk.Api;
-using Aspose.Storage.Cloud.Sdk.Model.Requests;
+﻿using Aspose.Pdf.Bootcamp.Domain;
 using FluentAssertions;
 using NUnit.Framework;
-using RestSharp.Extensions;
-using Configuration = Aspose.Storage.Cloud.Sdk.Configuration;
 
-namespace Aspose.Pdf.Bootcamp.Tests
+namespace Aspose.Pdf.Bootcamp.Data.Tests
 {
     [TestFixture]
     public class PdfStorageTests

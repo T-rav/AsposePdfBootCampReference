@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27703.2026
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aspose.Pdf.Bootcamp.Tests", "Aspose.Pdf.Bootcamp.Tests\Aspose.Pdf.Bootcamp.Tests.csproj", "{658221EC-92E9-4395-9B07-097D19BFB83C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aspose.Pdf.Bootcamp.Data.Tests", "Aspose.Pdf.Bootcamp.Tests\Aspose.Pdf.Bootcamp.Data.Tests.csproj", "{658221EC-92E9-4395-9B07-097D19BFB83C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aspose.Pdf.Bootcamp.Domain", "Aspose.Pdf.Bootcamp.Domain\Aspose.Pdf.Bootcamp.Domain.csproj", "{53AE7970-D22B-4920-84EA-47BC02F26581}"
 EndProject

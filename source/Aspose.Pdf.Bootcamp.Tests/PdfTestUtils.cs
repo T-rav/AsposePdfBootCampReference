@@ -1,18 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
+﻿using System.Configuration;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Aspose.Pdf.Bootcamp.Data;
 using Aspose.Storage.Cloud.Sdk.Api;
 using Aspose.Storage.Cloud.Sdk.Model.Requests;
 using NUnit.Framework;
 using RestSharp.Extensions;
 using Configuration = Aspose.Storage.Cloud.Sdk.Configuration;
 
-namespace Aspose.Pdf.Bootcamp.Tests
+namespace Aspose.Pdf.Bootcamp.Data.Tests
 {
     internal class PdfTestUtils
     {

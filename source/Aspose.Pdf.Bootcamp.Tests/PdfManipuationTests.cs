@@ -1,11 +1,9 @@
 ﻿using System.Collections.Generic;
-using System.IO;
-using Aspose.Pdf.Bootcamp.Data;
 using Aspose.Pdf.Bootcamp.Domain;
 using FluentAssertions;
 using NUnit.Framework;
 
-namespace Aspose.Pdf.Bootcamp.Tests
+namespace Aspose.Pdf.Bootcamp.Data.Tests
 {
     [TestFixture]
     public class PdfManipuationTests

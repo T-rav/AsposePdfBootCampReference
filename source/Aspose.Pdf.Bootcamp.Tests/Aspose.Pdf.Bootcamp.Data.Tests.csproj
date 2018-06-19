@@ -9,8 +9,8 @@
     <ProjectGuid>{658221EC-92E9-4395-9B07-097D19BFB83C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Aspose.Pdf.Bootcamp.Tests</RootNamespace>
-    <AssemblyName>Aspose.Pdf.Bootcamp.Tests</AssemblyName>
+    <RootNamespace>Aspose.Pdf.Bootcamp.Data.Tests</RootNamespace>
+    <AssemblyName>Aspose.Pdf.Bootcamp.Data.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <NuGetPackageImportStamp>
