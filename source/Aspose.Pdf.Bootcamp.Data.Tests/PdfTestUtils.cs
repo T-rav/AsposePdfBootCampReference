@@ -51,5 +51,11 @@ namespace Aspose.Pdf.Bootcamp.Data.Tests
             var pdfStorage = new PdfStorage();
             pdfStorage.UploadTemplate(filePath, fileName);
         }
+
+        public byte[] FetchFileFromLocal(string fileName)
+        {
+            var localPath = CreateFilePath(fileName);
+            return File.ReadAllBytes(localPath);
+        }
     }
 }

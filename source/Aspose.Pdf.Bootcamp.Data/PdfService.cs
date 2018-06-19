@@ -29,7 +29,7 @@ namespace Aspose.Pdf.Bootcamp.Data
             private string _templateName;
             private List<SimplePdfFormField> _formFields;
             private string _localPath;
-
+            private string _password;
 
             public IPdfServiceWithFormData WithTemplate(string templateName, string localPath)
             {
@@ -44,13 +44,27 @@ namespace Aspose.Pdf.Bootcamp.Data
                 return this;
             }
 
+            public IPdfServicePopulate WithPassword(string password)
+            {
+                _password = password;
+                return this;
+            }
+
             public byte[] Populate()
             {
                 var result = _pdfStorage.UploadTemplate(_localPath, _templateName);
                 if (result.Successful)
                 {
                     var cloudStorageName = _pdfManipulation.PopulateTemplate(_templateName, _formFields);
-                    return _pdfManipulation.MarkFieldsAsReadOnly(cloudStorageName, _formFields);
+                    var readonlyBytes = _pdfManipulation.MarkFieldsAsReadOnly(cloudStorageName, _formFields);
+
+                    if (string.IsNullOrEmpty(_password))
+                    {
+                        return readonlyBytes;
+                    }
+
+                    var signedBytes = _pdfManipulation.PasswordProtect(readonlyBytes, _password);
+                    return signedBytes;
                 }
 
                 return new byte[0];

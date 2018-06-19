@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.IO;
 using System.Linq;
@@ -43,7 +44,7 @@ namespace Aspose.Pdf.Bootcamp.Data
                     var form = stamper.AcroFields;
                     foreach (var field in form.Fields)
                     {
-                        if (readonlyFields.Any(x=>x.Name == field.Key))
+                        if (FieldInReadOnlyList(readonlyFields, field))
                         {
                             MakeFieldReadOnly(form, field);
                         }
@@ -55,7 +56,27 @@ namespace Aspose.Pdf.Bootcamp.Data
             RemoveTempFiles(tempCloudFile, tempOuptutFile);
             return result;
         }
-        
+
+        public byte[] PasswordProtect(byte[] bytes, string password)
+        {
+            if(string.IsNullOrWhiteSpace(password)) return new byte[0];
+
+            using (var input = new MemoryStream(bytes))
+            {
+                using (var output = new MemoryStream())
+                {
+                    var reader = new PdfReader(input);
+                    PdfEncryptor.Encrypt(reader, output, true, password, password, PdfWriter.ALLOW_SCREENREADERS);
+                    return output.ToArray();
+                }
+            }
+        }
+
+        private bool FieldInReadOnlyList(List<SimplePdfFormField> readonlyFields, KeyValuePair<string, AcroFields.Item> field)
+        {
+            return readonlyFields.Any(x=>x.Name == field.Key);
+        }
+
         private Fields ConvertToAsposeFields(List<SimplePdfFormField> fields)
         {
             var result = new Fields

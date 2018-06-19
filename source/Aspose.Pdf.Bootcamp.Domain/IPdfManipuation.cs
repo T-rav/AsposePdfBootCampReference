@@ -6,5 +6,6 @@ namespace Aspose.Pdf.Bootcamp.Domain
     {
         byte[] MarkFieldsAsReadOnly(string cloudStorageName, List<SimplePdfFormField> readonlyFields);
         string PopulateTemplate(string templateName, List<SimplePdfFormField> fields);
+        byte[] PasswordProtect(byte[] bytes, string password);
     }
 }

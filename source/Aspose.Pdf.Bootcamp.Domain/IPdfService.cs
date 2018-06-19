@@ -15,6 +15,7 @@ namespace Aspose.Pdf.Bootcamp.Domain
 
     public interface IPdfServicePopulate
     {
+        IPdfServicePopulate WithPassword(string password);
         byte[] Populate();
     }
 }

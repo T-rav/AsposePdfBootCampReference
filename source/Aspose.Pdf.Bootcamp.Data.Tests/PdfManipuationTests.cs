@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Aspose.Pdf.Bootcamp.Domain;
 using FluentAssertions;
 using NUnit.Framework;
@@ -37,7 +38,7 @@ namespace Aspose.Pdf.Bootcamp.Data.Tests
         public class MarkFieldsAsReadOnly
         {
             [Test]
-            public void WhenValidFormInformation_ShouldReturnNewFileNameOfPopulatedPdf()
+            public void WhenValidFormInformation_ShouldReturnBytesOfModifedPdf()
             {
                 // arrange
                 var pdfUtils = new PdfTestUtils();
@@ -57,6 +58,42 @@ namespace Aspose.Pdf.Bootcamp.Data.Tests
                 var expected = 108590;
                 actual.Length.Should().Be(expected);
             }
-        } 
+        }
+
+        [TestFixture]
+        public class SetPassword
+        {
+            [Test]
+            public void WhenNonEmptyPassword_ShouldReturnBytesOfPasswordProtectedPdf()
+            {
+                // arrange
+                var fileName = "BootCampForm-v2.pdf";
+                var password = "1234";
+                var pdfUtils = new PdfTestUtils();
+                var pdfBytes = pdfUtils.FetchFileFromLocal(fileName);
+                var pdfManipuation = new PdfManipuation();
+                // act
+                var actual = pdfManipuation.PasswordProtect(pdfBytes, password);
+                // assert
+                var expected = 106000;
+                actual.Length.Should().BeGreaterOrEqualTo(expected);
+            }
+
+            [TestCase("")]
+            [TestCase(" ")]
+            [TestCase(null)]
+            public void WhenEmptyPassword_ShouldReturnZeroBytes(string password)
+            {
+                // arrange
+                var fileName = "BootCampForm-v2.pdf";
+                var pdfUtils = new PdfTestUtils();
+                var pdfBytes = pdfUtils.FetchFileFromLocal(fileName);
+                var pdfManipuation = new PdfManipuation();
+                // act
+                var actual = pdfManipuation.PasswordProtect(pdfBytes, password);
+                // assert
+                actual.Length.Should().Be(0);
+            }
+        }
     }
 }

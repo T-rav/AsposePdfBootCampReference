@@ -72,7 +72,7 @@
   <ItemGroup>
     <Compile Include="PdfManipuationTests.cs" />
     <Compile Include="PdfStorageTests.cs" />
-    <Compile Include="PdfGatewayTests.cs" />
+    <Compile Include="PdfServiceTests.cs" />
     <Compile Include="PdfTestUtils.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
