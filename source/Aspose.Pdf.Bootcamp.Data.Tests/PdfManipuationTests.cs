@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Aspose.Pdf.Bootcamp.Domain;
 using FluentAssertions;
 using NUnit.Framework;
@@ -69,7 +68,6 @@ namespace Aspose.Pdf.Bootcamp.Data.Tests
                 // arrange
                 var fileName = "BootCampForm-v2.pdf";
                 var password = "1234";
-                var badPassword = "9999";
                 var pdfUtils = new PdfTestUtils();
                 var pdfBytes = pdfUtils.FetchFileFromLocal(fileName);
                 var pdfManipuation = new PdfManipuation();
