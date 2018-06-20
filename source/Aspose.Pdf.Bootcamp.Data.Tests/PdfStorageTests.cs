@@ -1,4 +1,5 @@
-﻿using Aspose.Pdf.Bootcamp.Domain;
+﻿using System.IO;
+using Aspose.Pdf.Bootcamp.Domain;
 using FluentAssertions;
 using NUnit.Framework;
 
@@ -16,7 +17,7 @@ namespace Aspose.Pdf.Bootcamp.Data.Tests
                 // arrange
                 var pdfTestUtils = new PdfTestUtils();
                 var templateName = "BootCampForm-v2.pdf";
-                var filePath = pdfTestUtils.CreateFilePath(templateName);
+                var filePath = pdfTestUtils.CreateTemplatePath(templateName);
                 var pdfStorage = new PdfStorage();
                 // act
                 var actual = pdfStorage.UploadTemplate(filePath, templateName);
@@ -33,7 +34,7 @@ namespace Aspose.Pdf.Bootcamp.Data.Tests
                 // arrange
                 var pdfTestUtils = new PdfTestUtils();
                 var templateName = "BootCampForm-v2.pdf";
-                var filePath = pdfTestUtils.CreateFilePath(templateName);
+                var filePath = pdfTestUtils.CreateTemplatePath(templateName);
                 var pdfStorage = new PdfStorage();
                 // act
                 var actual = pdfStorage.UploadTemplate(filePath, fileName);
@@ -48,7 +49,7 @@ namespace Aspose.Pdf.Bootcamp.Data.Tests
                 // arrange
                 var pdfTestUtils = new PdfTestUtils();
                 var templateName = "BootCampForm-DOESNOTEXIST-v2.pdf";
-                var filePath = pdfTestUtils.CreateFilePath(templateName);
+                var filePath = pdfTestUtils.CreateTemplatePath(templateName);
                 var pdfStorage = new PdfStorage();
                 // act
                 var actual = pdfStorage.UploadTemplate(filePath, templateName);
@@ -67,14 +68,20 @@ namespace Aspose.Pdf.Bootcamp.Data.Tests
                 // arrange
                 var pdfTestUtils = new PdfTestUtils();
                 var templateName = "BootCampForm-v2.pdf";
-                var filePath = pdfTestUtils.CreateFilePath(templateName);
+                var filePath = pdfTestUtils.CreateTemplatePath(templateName);
                 var pdfStorage = new PdfStorage();
                 pdfStorage.UploadTemplate(filePath, templateName);
                 // act
                 var actual = pdfStorage.Download(templateName);
                 // assert
-                var expectedBytes = 94853;
-                actual.Length.Should().Be(expectedBytes);
+                var expectedLength = FetchBootCampFormExpectedLength(filePath);
+                actual.Length.Should().Be(expectedLength);
+            }
+
+            private int FetchBootCampFormExpectedLength(string filePath)
+            {
+                var expectedBytes = File.ReadAllBytes(filePath);
+                return expectedBytes.Length;
             }
         }
 
@@ -87,7 +94,7 @@ namespace Aspose.Pdf.Bootcamp.Data.Tests
                 // arrange
                 var pdfTestUtils = new PdfTestUtils();
                 var templateName = "BootCampForm-v2.pdf";
-                var filePath = pdfTestUtils.CreateFilePath(templateName);
+                var filePath = pdfTestUtils.CreateTemplatePath(templateName);
                 var pdfStorage = new PdfStorage();
                 pdfStorage.UploadTemplate(filePath, templateName);
                 // act

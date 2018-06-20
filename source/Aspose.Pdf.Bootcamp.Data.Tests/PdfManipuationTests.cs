@@ -47,16 +47,16 @@ namespace Aspose.Pdf.Bootcamp.Data.Tests
                 var pdfManipuation = new PdfManipuation();
                 var fields = new List<SimplePdfFormField>
                 {
-                    new SimplePdfFormField {Name = "FirstName", Value = "Bob"},
-                    new SimplePdfFormField {Name = "Surname", Value = "Smith"},
-                    new SimplePdfFormField {Name = "DateOfBirth", Value = "1981-04-29"}
+                    new SimplePdfFormField{Name = "FirstName", Value = "Travis"},
+                    new SimplePdfFormField{Name = "Surname", Value = "Frisinger"},
+                    new SimplePdfFormField{Name = "DateOfBirth", Value = "1981-04-29"},
                 };
                 var cloudStorageName = pdfManipuation.PopulateTemplate(fileName, fields);
                 // act
                 var actual = pdfManipuation.MarkFieldsAsReadOnly(cloudStorageName, fields);
                 // assert
-                var expected = 108590;
-                actual.Length.Should().Be(expected);
+                var expectedLength = pdfUtils.FetchExpectedFileLength("readonly.pdf");
+                actual.Length.Should().Be(expectedLength);
             }
         }
 
@@ -69,14 +69,14 @@ namespace Aspose.Pdf.Bootcamp.Data.Tests
                 // arrange
                 var fileName = "BootCampForm-v2.pdf";
                 var password = "1234";
+                var badPassword = "9999";
                 var pdfUtils = new PdfTestUtils();
                 var pdfBytes = pdfUtils.FetchFileFromLocal(fileName);
                 var pdfManipuation = new PdfManipuation();
                 // act
                 var actual = pdfManipuation.PasswordProtect(pdfBytes, password);
                 // assert
-                var expected = 106000;
-                actual.Length.Should().BeGreaterOrEqualTo(expected);
+                Assert.DoesNotThrow(()=> pdfUtils.DecryptBytes(actual, password));
             }
 
             [TestCase("")]

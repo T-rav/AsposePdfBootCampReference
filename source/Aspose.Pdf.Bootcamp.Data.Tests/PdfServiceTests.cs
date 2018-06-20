@@ -24,7 +24,7 @@ namespace Aspose.Pdf.Bootcamp.Data.Tests
                         // arrange
                         var pdfUtil = new PdfTestUtils();
                         var templateName = "BootCampForm-v2.pdf";
-                        var localPath = pdfUtil.CreateFilePath(templateName);
+                        var localPath = pdfUtil.CreateTemplatePath(templateName);
                         var formFields = new List<SimplePdfFormField>{
                             new SimplePdfFormField{Name = "FirstName", Value = "Travis"},
                             new SimplePdfFormField{Name = "Surname", Value = "Frisinger"},
@@ -37,7 +37,7 @@ namespace Aspose.Pdf.Bootcamp.Data.Tests
                             .WithFormData(formFields)
                             .Populate();
                         // assert
-                        var expectedLength = 108604;
+                        var expectedLength = pdfUtil.FetchExpectedFileLength("readonly.pdf");
                         actual.Length.Should().Be(expectedLength);
                     }
 
@@ -47,7 +47,7 @@ namespace Aspose.Pdf.Bootcamp.Data.Tests
                         // arrange
                         var pdfUtil = new PdfTestUtils();
                         var templateName = "BootCampForm-DOESNOTEXIST-v2.pdf";
-                        var localPath = pdfUtil.CreateFilePath(templateName);
+                        var localPath = pdfUtil.CreateTemplatePath(templateName);
                         var formFields = new List<SimplePdfFormField>{
                             new SimplePdfFormField{Name = "FirstName", Value = "Travis"},
                             new SimplePdfFormField{Name = "Surname", Value = "Frisinger"},
@@ -77,7 +77,7 @@ namespace Aspose.Pdf.Bootcamp.Data.Tests
                             // arrange
                             var pdfUtil = new PdfTestUtils();
                             var templateName = "BootCampForm-v2.pdf";
-                            var localPath = pdfUtil.CreateFilePath(templateName);
+                            var localPath = pdfUtil.CreateTemplatePath(templateName);
                             var formFields = new List<SimplePdfFormField>{
                                 new SimplePdfFormField{Name = "FirstName", Value = "Travis"},
                                 new SimplePdfFormField{Name = "Surname", Value = "Frisinger"},
@@ -91,7 +91,7 @@ namespace Aspose.Pdf.Bootcamp.Data.Tests
                                 .WithPassword("1234")
                                 .Populate();
                             // assert
-                            var unsignedBytesLength = 108604;
+                            var unsignedBytesLength = pdfUtil.FetchExpectedFileLength("readonly.pdf");
                             actual.Length.Should().NotBe(unsignedBytesLength);
                         }
                     }

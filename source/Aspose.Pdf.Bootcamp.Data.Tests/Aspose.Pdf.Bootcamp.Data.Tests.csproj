@@ -78,6 +78,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="Expected\readonly.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Forms\BootCampForm-v2.pdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
