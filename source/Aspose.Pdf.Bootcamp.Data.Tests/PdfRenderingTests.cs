@@ -7,7 +7,7 @@ using NUnit.Framework;
 namespace Aspose.Pdf.Bootcamp.Data.Tests
 {
     [TestFixture]
-    public class PdfServiceTests
+    public class PdfRenderingTests
     {
         [TestFixture]
         public class WithTemplate
@@ -30,7 +30,7 @@ namespace Aspose.Pdf.Bootcamp.Data.Tests
                             new SimplePdfFormField{Name = "Surname", Value = "Frisinger"},
                             new SimplePdfFormField{Name = "DateOfBirth", Value = "1981-04-29"},
                         };
-                        var pdfService = new PdfService();
+                        var pdfService = new PdfRenderingRendering();
                         // act
                         var actual = pdfService
                             .WithTemplate(templateName, localPath)
@@ -53,7 +53,7 @@ namespace Aspose.Pdf.Bootcamp.Data.Tests
                             new SimplePdfFormField{Name = "Surname", Value = "Frisinger"},
                             new SimplePdfFormField{Name = "DateOfBirth", Value = "1981-04-29"},
                         };
-                        var pdfService = new PdfService();
+                        var pdfService = new PdfRenderingRendering();
                         // act
                         var actual = pdfService
                             .WithTemplate(templateName, localPath)
@@ -83,7 +83,7 @@ namespace Aspose.Pdf.Bootcamp.Data.Tests
                                 new SimplePdfFormField{Name = "Surname", Value = "Frisinger"},
                                 new SimplePdfFormField{Name = "DateOfBirth", Value = "1981-04-29"},
                             };
-                            var pdfService = new PdfService();
+                            var pdfService = new PdfRenderingRendering();
                             // act
                             var actual = pdfService
                                 .WithTemplate(templateName, localPath)

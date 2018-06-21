@@ -93,5 +93,24 @@ namespace Aspose.Pdf.Bootcamp.Data.Tests
                 actual.Length.Should().Be(0);
             }
         }
+
+        [TestFixture]
+        public class BarCode
+        {
+            [Test]
+            public void WhenNonEmptyPassword_ShouldReturnBytesOfPasswordProtectedPdf()
+            {
+                // arrange
+                var fileName = "BootCampForm-v2.pdf";
+                var password = "1234";
+                var pdfUtils = new PdfTestUtils();
+                var pdfBytes = pdfUtils.FetchFileFromLocal(fileName);
+                var pdfManipuation = new PdfManipuation();
+                // act
+                var actual = pdfManipuation.PasswordProtect(pdfBytes, password);
+                // assert
+                Assert.DoesNotThrow(() => pdfUtils.DecryptBytes(actual, password));
+            }
+        }
     }
 }

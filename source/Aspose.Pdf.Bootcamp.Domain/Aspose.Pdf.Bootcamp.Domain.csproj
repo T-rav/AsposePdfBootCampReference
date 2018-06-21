@@ -44,7 +44,7 @@
   <ItemGroup>
     <Compile Include="IPdfManipuation.cs" />
     <Compile Include="IPdfStorage.cs" />
-    <Compile Include="IPdfService.cs" />
+    <Compile Include="IPdfRendering.cs" />
     <Compile Include="SimplePdfFormField.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UploadResult.cs" />

@@ -3,14 +3,14 @@ using Aspose.Pdf.Bootcamp.Domain;
 
 namespace Aspose.Pdf.Bootcamp.Data
 {
-    public class PdfService : IPdfService
+    public class PdfRenderingRendering : IPdfRendering
     {
         private static IPdfStorage _pdfStorage;
         private static IPdfManipuation _pdfManipulation;
 
-        public PdfService() :this(new PdfStorage(), new PdfManipuation()) { }
+        public PdfRenderingRendering() :this(new PdfStorage(), new PdfManipuation()) { }
 
-        private PdfService(IPdfStorage pdfStorage, IPdfManipuation pdfManipuation)
+        private PdfRenderingRendering(IPdfStorage pdfStorage, IPdfManipuation pdfManipuation)
         {
             _pdfStorage = pdfStorage;
             _pdfManipulation = pdfManipuation;
@@ -18,13 +18,13 @@ namespace Aspose.Pdf.Bootcamp.Data
 
         public IPdfServiceWithFormData WithTemplate(string templateName, string localPath)
         {
-            var builder = new PdfServiceBuilder();
+            var builder = new PdfRenderingBuilder();
             builder.WithTemplate(templateName, localPath);
 
             return builder;
         }
 
-        private class PdfServiceBuilder : IPdfService, IPdfServiceWithFormData, IPdfServicePopulate
+        private class PdfRenderingBuilder : IPdfRendering, IPdfServiceWithFormData, IPdfServicePopulate
         {
             private string _templateName;
             private List<SimplePdfFormField> _formFields;

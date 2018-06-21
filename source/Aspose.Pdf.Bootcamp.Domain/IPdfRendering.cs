@@ -2,7 +2,7 @@
 
 namespace Aspose.Pdf.Bootcamp.Domain
 {
-    public interface IPdfService
+    public interface IPdfRendering
     {
         IPdfServiceWithFormData WithTemplate(string templateName, string localPath);
     }

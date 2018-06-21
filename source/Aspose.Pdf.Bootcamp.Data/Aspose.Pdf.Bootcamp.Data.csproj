@@ -30,6 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Aspose.BarCode-Cloud, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Aspose.BarCode-Cloud.1.1.0\lib\Aspose.BarCode-Cloud.dll</HintPath>
+    </Reference>
     <Reference Include="Aspose.Pdf.Cloud.Sdk, Version=18.5.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Aspose.Pdf-Cloud.18.5.0\lib\net4.5\Aspose.Pdf.Cloud.Sdk.dll</HintPath>
     </Reference>
@@ -57,9 +60,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BarCodes.cs" />
+    <Compile Include="IBarCodes.cs" />
     <Compile Include="PdfManipuation.cs" />
     <Compile Include="PdfStorage.cs" />
-    <Compile Include="PdfService.cs" />
+    <Compile Include="PdfRenderingRendering.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
