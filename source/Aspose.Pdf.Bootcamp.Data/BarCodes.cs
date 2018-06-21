@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System.Configuration;
+using System.IO;
 using System.Linq;
 using Com.Aspose.Barcode.Api;
 using Com.Aspose.Barcode.Model;
@@ -7,7 +8,14 @@ namespace Aspose.Pdf.Bootcamp.Data
 {
     public class BarCodes : IBarCodes
     {
-        private readonly BarCodeBuilder _builder = new BarCodeBuilder();
+        private readonly BarCodeBuilder _builder;
+
+        public BarCodes()
+        {
+            var apiKey = ConfigurationManager.AppSettings["ApiKey"];
+            var appSid = ConfigurationManager.AppSettings["AppSid"];
+            _builder = new BarCodeBuilder(apiKey, appSid);
+        }
 
         public IBarCodeResolution With_Text(string text)
         {
@@ -23,6 +31,9 @@ namespace Aspose.Pdf.Bootcamp.Data
 
         private class BarCodeBuilder : IBarCodes, IBarCodeResolution, IBarCodeDimension, IBarCodeType, IBarCodeFormat, IBarCodeOperations
         {
+            private readonly string _apiKey;
+            private readonly string _appSid;
+
             private string _text;
             private float _resolutionX;
             private float _resolutionY;
@@ -32,6 +43,12 @@ namespace Aspose.Pdf.Bootcamp.Data
             private string _format;
             private string _enableChecksum;
             private byte[] _imageBytes;
+
+            public BarCodeBuilder(string apiKey, string appSid)
+            {
+                _apiKey = apiKey;
+                _appSid = appSid;
+            }
 
             public IBarCodeResolution With_Text(string text)
             {
@@ -95,15 +112,20 @@ namespace Aspose.Pdf.Bootcamp.Data
 
             public byte[] Create()
             {
-                var barcodeApi = new BarcodeApi("fb8ed8c9af7358d6a61fb1ab97da7be1", "36575ccf-1318-4773-8623-3d1b04d07e90", "http://api.aspose.cloud/v1.1");
-
-                var apiResponse = barcodeApi.GetBarcodeGenerate(_text, _type, _format, _resolutionX, _resolutionY, _dimensionX, _dimensionY, _enableChecksum);
-                if (apiResponse != null)
+                if (string.IsNullOrWhiteSpace(_text))
                 {
-                    _imageBytes = apiResponse.ResponseStream;
+                    return new byte[0];
                 }
 
-                return new byte[0];
+                var barcodeApi = new BarcodeApi(_apiKey, _appSid, "http://api.aspose.cloud/v1.1");
+
+                var apiResponse = barcodeApi.GetBarcodeGenerate(_text, _type, _format, _resolutionX, _resolutionY, _dimensionX, _dimensionY, _enableChecksum);
+                if (apiResponse == null)
+                {
+                    return new byte[0];
+                }
+
+                return apiResponse.ResponseStream;
             }
 
             public void Save_To(string localFile)
@@ -114,7 +136,7 @@ namespace Aspose.Pdf.Bootcamp.Data
 
             public string Extract_Text()
             {
-                var barcodeApi = new BarcodeApi("fb8ed8c9af7358d6a61fb1ab97da7be1", "36575ccf-1318-4773-8623-3d1b04d07e90", "http://api.aspose.cloud/v1.1");
+                var barcodeApi = new BarcodeApi(_apiKey, _appSid, "http://api.aspose.cloud/v1.1");
                 var apiResponse = barcodeApi.PostBarcodeRecognizeFromUrlorContent(_type, _enableChecksum, false, 0, null, _imageBytes);
 
                 if (apiResponse.Status == "OK")
@@ -127,6 +149,4 @@ namespace Aspose.Pdf.Bootcamp.Data
             }
         }
     }
-
-    
 }

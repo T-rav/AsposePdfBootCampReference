@@ -3,6 +3,7 @@ using System.IO;
 using System.Linq;
 using Com.Aspose.Barcode.Api;
 using Com.Aspose.Barcode.Model;
+using FluentAssertions;
 using NUnit.Framework;
 using NUnit.Framework.Internal;
 
@@ -21,18 +22,34 @@ namespace Aspose.Pdf.Bootcamp.Data.Tests
                 var localPath = Path.GetTempFileName() + ".png";
                 var text = Guid.NewGuid().ToString();
                 var sut = new BarCodes();
-                var qrCodeBytes = sut.With_Text(text)
+                // act
+                var actual = sut.With_Text(text)
                                      .With_Default_Resolution()
                                      .With_Default_Dimension()
                                      .Of_Type_QR_Code(true)
                                      .As_Png()
                                      .Create();
-                if (qrCodeBytes.Length > 0)
-                {
-                    File.WriteAllBytes(localPath,qrCodeBytes);
-                }
                 // assert
-                Assert.True(File.Exists(localPath));
+                actual.Length.Should().BeGreaterThan(0);
+            }
+
+            [TestCase("")]
+            [TestCase(" ")]
+            [TestCase(null)]
+            public void WhenNullOrEmptyText_ExpectNoQrCode(string text)
+            {
+                // arrange 
+                var localPath = Path.GetTempFileName() + ".png";
+                var sut = new BarCodes();
+                //act
+                var actual = sut.With_Text(text)
+                    .With_Default_Resolution()
+                    .With_Default_Dimension()
+                    .Of_Type_QR_Code(true)
+                    .As_Png()
+                    .Create();
+                // assert
+                actual.Length.Should().Be(0);
             }
         }
 
@@ -46,6 +63,7 @@ namespace Aspose.Pdf.Bootcamp.Data.Tests
                 var localPath = Path.GetTempFileName() + ".png";
                 var text = Guid.NewGuid().ToString();
                 var sut = new BarCodes();
+                // act
                 sut.With_Text(text)
                     .With_Default_Resolution()
                     .With_Default_Dimension()
@@ -54,7 +72,7 @@ namespace Aspose.Pdf.Bootcamp.Data.Tests
                     .Save_To(localPath);
                 var qrCodeBytes = File.ReadAllBytes(localPath);
                 // assert
-                Assert.Greater(qrCodeBytes.Length, 0);
+                qrCodeBytes.Length.Should().BeGreaterThan(0);
             }
         }
 
@@ -74,7 +92,8 @@ namespace Aspose.Pdf.Bootcamp.Data.Tests
                                 .As_Png()
                                 .Extract_Text();
                 // assert
-                Assert.AreEqual("4b744914-00cc-4d29-99b9-d6c1a92db7a8", actual);
+                var expected = "4b744914-00cc-4d29-99b9-d6c1a92db7a8";
+                Assert.AreEqual(expected, actual);
             }
         }
     }
